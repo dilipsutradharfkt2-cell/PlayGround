@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <meta name="theme-color" content="#101a1d" />
+  <title>Wildbound — Open World Survival</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+  <script type="importmap">
+    {"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.js"}}
+  </script>
+</head>
+<body>
+  <main id="game" aria-label="Wildbound survival game">
+    <canvas id="world"></canvas>
+    <div class="vignette"></div>
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="Wildbound home"><span class="brand-mark">W</span><span>WILDBOUND<small>FRONTIER SURVIVAL</small></span></a>
+      <div class="world-label"><i></i><span>THE VERDANT FRONTIER</span><b id="weather">CLEAR SKIES</b></div>
+      <div class="top-actions"><button id="cameraBtn" class="icon-btn" title="Toggle camera (V)">◉ <span>CAMERA</span></button><button id="saveBtn" class="icon-btn" title="Save world">↧ <span>SAVE</span></button><button id="pauseBtn" class="icon-btn" title="Pause">Ⅱ <span>PAUSE</span></button></div>
+    </header>
+    <section class="hud-left">
+      <div class="status-card"><div class="status-title"><span>FIELD STATUS</span><span id="clock">08:20</span></div><div class="stat-row"><span class="stat-icon heart">♥</span><div class="meter"><div class="meter-fill health-fill" id="healthFill"></div></div><b id="healthText">100</b></div><div class="stat-row"><span class="stat-icon food">◈</span><div class="meter"><div class="meter-fill food-fill" id="foodFill"></div></div><b id="foodText">100</b></div><div class="stat-row"><span class="stat-icon stamina">ϟ</span><div class="meter"><div class="meter-fill stamina-fill" id="staminaFill"></div></div><b id="staminaText">100</b></div></div>
+      <div class="objective"><span class="objective-glyph">✦</span><div><small>FIELD NOTE 01</small><b id="objectiveText">Gather wood to begin</b><span>Collect 5 wood</span></div></div>
+    </section>
+    <section class="hud-right"><div class="minimap-wrap"><div class="mini-head"><span>LOCAL TERRAIN</span><span id="coords">0, 0</span></div><canvas id="minimap" width="160" height="160"></canvas><div class="map-north">N</div></div><div class="biome-tag"><span class="biome-dot"></span><span id="biome">SUNLIT MEADOW</span></div></section>
+    <div id="crosshair"><i></i><b></b></div>
+    <div id="targetHint" class="target-hint">[ E ] GATHER</div>
+    <div class="bottom-ui"><div class="hotbar" id="hotbar"></div><div class="interaction-help"><span><kbd>W A S D</kbd> MOVE</span><span><kbd>SPACE</kbd> JUMP</span><span><kbd>CLICK</kbd> MINE</span><span><kbd>RIGHT CLICK</kbd> PLACE</span><span><kbd>E</kbd> INVENTORY</span></div></div>
+    <div id="toast" class="toast"></div>
+    <div id="inventoryPanel" class="modal hidden"><div class="modal-card inventory-card"><button class="close-btn" data-close>×</button><div class="eyebrow">YOUR FIELD KIT</div><h2>Inventory</h2><p class="modal-sub">Everything you need to make this place your own.</p><div id="inventoryGrid" class="inventory-grid"></div><div class="craft-section"><div><div class="eyebrow">FIELD CRAFTING</div><h3>Quick recipes</h3></div><div class="recipe-list" id="recipes"></div></div><button class="primary-btn" data-close>BACK TO FRONTIER <span>↗</span></button></div></div>
+    <div id="pausePanel" class="modal hidden"><div class="modal-card pause-card"><div class="brand-mark large">W</div><div class="eyebrow">THE FRONTIER IS WAITING</div><h2>Take a breath.</h2><p class="modal-sub">Your progress is saved locally on this device.</p><button id="resumeBtn" class="primary-btn">RETURN TO WORLD <span>↗</span></button><button id="resetBtn" class="text-btn">Start a new world</button></div></div>
+    <div id="startScreen" class="start-screen"><div class="start-content"><div class="eyebrow">A WORLD OF YOUR OWN</div><h1>Find your<br><em>wild.</em></h1><p>A living frontier, shaped by your hands.<br>Gather. Build. Make it home.</p><button id="startBtn" class="primary-btn">ENTER THE FRONTIER <span>↗</span></button><div class="start-tip"><span>✦</span> TIP — Gather wood and stone, then craft a workbench.</div></div><div class="start-footer"><span>WILDBOUND / 01</span><span>PROCEDURAL SURVIVAL EXPERIENCE</span></div></div>
+    <div class="mobile-controls"><div id="joystick" class="joystick"><div class="joy-knob"></div></div><div class="mobile-actions"><button id="mobileMine">⛏</button><button id="mobileJump">↑</button><button id="mobilePlace">＋</button><button id="mobileInventory">▦</button></div><div id="lookZone" class="look-zone"></div></div>
+    <div class="loading" id="loading"><div class="loading-mark">W</div><span>SETTING THE SCENE</span><i></i></div>
+  </main>
+  <script type="module" src="game.js"></script>
+</body>
+</html>
